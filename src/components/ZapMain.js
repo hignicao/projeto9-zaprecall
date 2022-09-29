@@ -2,12 +2,13 @@ import Deck from "./Deck";
 import Footer from "./Footer";
 import Header from "./Header";
 import styled from "styled-components";
+import DECK1 from '../assets/utils/DECK1'
 
 export default function ZapMain() {
 	return (
 		<Main>
 			<Header />
-			<Deck />
+			<Deck deck={DECK1}/>
 			<Footer />
 		</Main>
 	);
@@ -15,7 +16,6 @@ export default function ZapMain() {
 
 const Main = styled.div`
 	background-color: #fb6b6b;
-	width: 100vw;
 	min-height: 100vh;
 	display: flex;
 	flex-direction: column;
