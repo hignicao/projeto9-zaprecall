@@ -21,21 +21,21 @@ export default function LoginScreen({ setIsLogged, deckSelected, setDeckSelected
 			<h1>ZapRecall</h1>
 			{!isDeckSelected ? (
 				<>
-					<select name="Decks para escolher" id="decks" defaultValue="" required onChange={(event) => changeDeck(event.target.value)}>
+					<select data-identifier="deck-selector" name="Decks para escolher" id="decks" defaultValue="" required onChange={(event) => changeDeck(event.target.value)}>
 						<option value="" disabled hidden>
 							Escolha seu deck
 						</option>
 						{deckSelected.map((el, i) => (
-							<option key={i} value={i}>
+							<option data-identifier="deck-option" key={i} value={i}>
 								{el[0].deckname} ({el.length} perguntas)
 							</option>
 						))}
 					</select>
-					<button onClick={() => selectDeck(temporaryDeck)}>Iniciar Recall!</button>
+					<button data-identifier="start-btn" onClick={() => selectDeck(temporaryDeck)}>Iniciar Recall!</button>
 				</>
 			) : (
 				<>
-					<input type="number" placeholder="Digite sua meta de zaps..." min={1} max={deckSelected.length} onChange={(event) => setGoal(event.target.value)} />
+					<input data-identifier="goals-input" type="number" placeholder="Digite sua meta de zaps..." min={1} max={deckSelected.length} onChange={(event) => setGoal(event.target.value)} />
 					<button disabled={goal < 1 || goal > deckSelected.length} onClick={() => setIsLogged(true)}>
 						Iniciar Recall!
 					</button>

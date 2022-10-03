@@ -19,32 +19,32 @@ export default function FlashCard({ number, card, result, setResult }) {
 	}
 
 	return (
-		<>
+		<div data-identifier="flashcard">
 			{!isCardOpened ? (
-				<ClosedCard cardAnswer={cardAnswer} onClick={cardAnswer === 0 ? () => setIsCardOpened(true) : null}>
-					<p>Pergunta {number}</p>
-					<img src={cardAnswer === 0 ? playImg : cardAnswer === 1 ? MissImg : cardAnswer === 2 ? AlmostImg : ZapImg} alt="Seta Play" />
+				<ClosedCard data-identifier="flashcard-show-btn" cardAnswer={cardAnswer} onClick={cardAnswer === 0 ? () => setIsCardOpened(true) : null}>
+					<p data-identifier="flashcard-index-item" >Pergunta {number}</p>
+					<img data-identifier="flashcard-status" src={cardAnswer === 0 ? playImg : cardAnswer === 1 ? MissImg : cardAnswer === 2 ? AlmostImg : ZapImg} alt="Seta Play" />
 				</ClosedCard>
 			) : (
 				<OpenedCard>
 					{!isCardShowingAnswer ? (
 						<QuestionCard>
-							<p>{card.question}</p>
-							<img onClick={() => setIsCardShowingAnswer(true)} src={virarImg} alt="Seta Virar Carta" />
+							<p data-identifier="flashcard-question" >{card.question}</p>
+							<img data-identifier="flashcard-turn-btn" onClick={() => setIsCardShowingAnswer(true)} src={virarImg} alt="Seta Virar Carta" />
 						</QuestionCard>
 					) : (
 						<AnswerCard>
-							<p>{card.answer}</p>
+							<p data-identifier="flashcard-answer" >{card.answer}</p>
 							<ButtonContainer>
-								<button onClick={() => answerQuestion(1)}>Não lembrei</button>
-								<button onClick={() => answerQuestion(2)}>Quase não lembrei</button>
-								<button onClick={() => answerQuestion(3)}>Zap!</button>
+								<button data-identifier="forgot-btn" onClick={() => answerQuestion(1)}>Não lembrei</button>
+								<button data-identifier="almost-forgot-btn" onClick={() => answerQuestion(2)}>Quase não lembrei</button>
+								<button data-identifier="zap-btn" onClick={() => answerQuestion(3)}>Zap!</button>
 							</ButtonContainer>
 						</AnswerCard>
 					)}
 				</OpenedCard>
 			)}
-		</>
+		</div>
 	);
 }
 

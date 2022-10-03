@@ -6,7 +6,7 @@ import ZapImg from "../assets/images/icone_certo.png";
 export default function Footer({ length, result, goal}) {
 	return (
 		<HeaderContainer>
-			<p>
+			<p data-identifier="flashcard-counter" >
 				{result.length}/{length} CONCLUIDOS
 			</p>
 			{result.length === 0 ? (
