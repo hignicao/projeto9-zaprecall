@@ -21,8 +21,8 @@ export default function Footer({ length, result, goal}) {
 				</>
 			) : (
 				<IconsContainer>
-					{result.map((el) => (
-						<img src={el === 1 ? MissImg : el === 2 ? AlmostImg : ZapImg} alt="" />
+					{result.map((el, i) => (
+						<img key={i} src={el === 1 ? MissImg : el === 2 ? AlmostImg : ZapImg} alt="" />
 					))}
 				</IconsContainer>
 			)}
