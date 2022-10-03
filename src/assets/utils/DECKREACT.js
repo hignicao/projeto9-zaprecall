@@ -1,5 +1,6 @@
-const DECK1 = [
+const DECKREACT = [
 	{
+		deckname: "React",
 		question: "O que é JSX?",
 		answer: "Uma extensão de linguagem do JavaScript",
 	},
@@ -33,4 +34,4 @@ const DECK1 = [
 	}
 ];
 
-export default DECK1;
+export default DECKREACT;

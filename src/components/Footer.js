@@ -3,7 +3,7 @@ import MissImg from "../assets/images/icone_erro.png";
 import AlmostImg from "../assets/images/icone_quase.png";
 import ZapImg from "../assets/images/icone_certo.png";
 
-export default function Footer({ length, result }) {
+export default function Footer({ length, result, goal}) {
 	return (
 		<HeaderContainer>
 			<p>
@@ -11,6 +11,14 @@ export default function Footer({ length, result }) {
 			</p>
 			{result.length === 0 ? (
 				""
+			) : result.length === length ? (
+				<>
+					{(result.filter(e => e === 3).length) < goal ? (
+						<p>Putz, você precisa treinar mais! 😱😵‍💫</p>
+					) : (
+						<p>Parabéns, você está craque! 🥳🎉</p>
+					)}
+				</>
 			) : (
 				<IconsContainer>
 					{result.map((el) => (

@@ -1,19 +1,43 @@
 import { useState } from "react";
 import styled from "styled-components";
-import DECK1 from "../assets/utils/DECK1";
+import deckArray from "../assets/utils/deckArray";
 import Deck from "./Deck";
 import Footer from "./Footer";
 import Header from "./Header";
+import LoginScreen from "./LoginScreen";
 
 export default function ZapMain() {
+	const [isLogged, setIsLogged] = useState(false);
+  const [deckSelected, setDeckSelected] = useState(deckArray)
 	const [result, setResult] = useState([]);
+	const [goal, setGoal] = useState(0);
+
+
 	return (
 		<>
-			<Main>
-				<Header />
-				<Deck deck={DECK1} result={result} setResult={setResult} />
-				<Footer length={DECK1.length} result={result} />
-			</Main>
+			{!isLogged ? (
+				<LoginScreen
+					setIsLogged={setIsLogged}
+					deckSelected={deckSelected}
+					setDeckSelected={setDeckSelected}
+					goal={goal}
+					setGoal={setGoal}
+				/>
+			) : (
+				<Main>
+					<Header />
+					<Deck
+						deck={deckSelected}
+						result={result}
+						setResult={setResult}
+					/>
+					<Footer
+						length={deckSelected.length}
+						result={result}
+						goal={goal}
+					/>
+				</Main>
+			)}
 		</>
 	);
 }
