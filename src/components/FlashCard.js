@@ -1,28 +1,49 @@
+import { useState } from "react";
 import styled from "styled-components";
 import playImg from "../assets/images/seta_play.png";
 import virarImg from "../assets/images/seta_virar.png";
+import MissImg from "../assets/images/icone_erro.png";
+import AlmostImg from "../assets/images/icone_quase.png";
+import ZapImg from "../assets/images/icone_certo.png";
 
-export default function FlashCard({ number, card }) {
+export default function FlashCard({ number, card, result, setResult }) {
+	const [isCardOpened, setIsCardOpened] = useState(false);
+	const [isCardShowingAnswer, setIsCardShowingAnswer] = useState(false);
+	const [cardAnswer, setCardAnswer] = useState(0);
+
+	function answerQuestion(answer) {
+		setCardAnswer(answer);
+		setIsCardOpened(false);
+		setIsCardShowingAnswer(false);
+		setResult([...result, answer]);
+	}
+
 	return (
 		<>
-			<ClosedCard>
-				<p>Pergunta {number}</p>
-				<img src={playImg} alt="Seta Play" />
-			</ClosedCard>
-			<div className="opened-card">
-				<QuestionCard>
-					<p>{card.question}</p>
-					<img src={virarImg} alt="" />
-				</QuestionCard>
-				<AnswerCard>
-					<p>{card.answer}</p>
-					<ButtonContainer>
-						<button>Não lembrei</button>
-						<button>Quase não lembrei</button>
-						<button>Zap!</button>
-					</ButtonContainer>
-				</AnswerCard>
-			</div>
+			{!isCardOpened ? (
+				<ClosedCard cardAnswer={cardAnswer} onClick={cardAnswer === 0 ? () => setIsCardOpened(true) : null}>
+					<p>Pergunta {number}</p>
+					<img src={cardAnswer === 0 ? playImg : cardAnswer === 1 ? MissImg : cardAnswer === 2 ? AlmostImg : ZapImg} alt="Seta Play" />
+				</ClosedCard>
+			) : (
+				<OpenedCard>
+					{!isCardShowingAnswer ? (
+						<QuestionCard>
+							<p>{card.question}</p>
+							<img onClick={() => setIsCardShowingAnswer(true)} src={virarImg} alt="Seta Virar Carta" />
+						</QuestionCard>
+					) : (
+						<AnswerCard>
+							<p>{card.answer}</p>
+							<ButtonContainer>
+								<button onClick={() => answerQuestion(1)}>Não lembrei</button>
+								<button onClick={() => answerQuestion(2)}>Quase não lembrei</button>
+								<button onClick={() => answerQuestion(3)}>Zap!</button>
+							</ButtonContainer>
+						</AnswerCard>
+					)}
+				</OpenedCard>
+			)}
 		</>
 	);
 }
@@ -38,15 +59,19 @@ const ClosedCard = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+
 	p {
 		font-family: "Recursive";
 		font-style: normal;
 		font-weight: 700;
 		font-size: 16px;
 		line-height: 19px;
-		color: #333333;
+		text-decoration: ${({ cardAnswer }) => (cardAnswer !== 0 ? "line-through" : "none")};
+		color: ${({ cardAnswer }) => (cardAnswer === 0 ? "#333333" : cardAnswer === 1 ? "#FF3030" : cardAnswer === 2 ? "#FF922E" : "#2FBE34")};
 	}
 `;
+
+const OpenedCard = styled.div``;
 
 const QuestionCard = styled.div`
 	width: 300px;
@@ -108,9 +133,17 @@ const ButtonContainer = styled.div`
 		justify-content: center;
 		text-align: center;
 		color: #ffffff;
-		background: blue;
 		border-radius: 5px;
-		border: 1px solid blue;
+		border: none;
 		padding: 5px;
+		:nth-child(1) {
+			background-color: #ff3030;
+		}
+		:nth-child(2) {
+			background-color: #ff922e;
+		}
+		:nth-child(3) {
+			background-color: #2fbe34;
+		}
 	}
 `;

@@ -4,31 +4,31 @@ const DECK1 = [
 		answer: "Uma extensão de linguagem do JavaScript",
 	},
   {
-		question: "O React é __",
+		question: "O React é ____",
 		answer: "Uma biblioteca JavaScript para construção de interfaces",
 	},
   {
-		question: "Componentes devem iniciar com __",
+		question: "Componentes devem iniciar com ____",
 		answer: "Letra maiúscula",
 	},
   {
-		question: "Podemos colocar __ dentro do JSX",
+		question: "Podemos colocar ____ dentro do JSX",
 		answer: "Expressões",
 	},
   {
-		question: "O ReactDOM nos ajuda __",
+		question: "O ReactDOM nos ajuda a ____",
 		answer: "Interagindo com a DOM para colocar componentes React na mesma",
 	},
   {
-		question: "Usamos o npm para __",
+		question: "Usamos o npm para ____",
 		answer: "Gerenciar os pacotes necessários e suas dependências",
 	},
   {
-		question: "Usamos props para __",
+		question: "Usamos props para ____",
 		answer: "Passar diferentes informações para componentes ",
 	},
   {
-		question: "Usamos estado (state) para __",
+		question: "Usamos estado (state) para ____",
 		answer: "Dizer para o React quais informações quando atualizadas devem renderizar a tela novamente",
 	}
 ];
